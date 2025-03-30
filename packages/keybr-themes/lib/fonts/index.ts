@@ -3,7 +3,7 @@ import { type CSSProperties } from "react";
 export type FontWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type FontStyle = "normal" | "italic";
 export type Fallback = "cursive" | "fantasy" | "monospace" | "sans-serif" | "serif" | "whitespace" | string;
-export type Script = "arabic" | "cyrillic" | "greek" | "hebrew" | "latin" | "thai";
+export type Script = "arabic" | "cyrillic" | "greek" | "hebrew" | "latin" | "thai" | "hiragana" | "katakana";
 
 export class FontFace {
   readonly family: string;

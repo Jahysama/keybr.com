@@ -84,14 +84,14 @@ export class Language implements EnumItem {
     /* id= */ "jp-hira",
     /* script= */ "hiragana",
     /* direction= */ "ltr",
-    /* alphabet= */ "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん",
+    /* alphabet= */ "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゃゅょっゎぁぃぅぇぉゔゕゖー゛゜",
   );
 
   static readonly JP_KATAKANA = new Language(
     /* id= */ "jp-kata",
     /* script= */ "katakana",
     /* direction= */ "ltr",
-    /* alphabet= */ "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン",
+    /* alphabet= */ "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポャュョッヮァィゥェォヴッーファフィフェフォヵヶ",
   );
   static readonly LT = new Language(
     /* id= */ "lt",
@@ -227,7 +227,15 @@ export class Language implements EnumItem {
 
   private constructor(
     id: string,
-    script: "arabic" | "cyrillic" | "greek" | "hebrew" | "latin" | "thai",
+    script:
+      | "arabic"
+      | "cyrillic"
+      | "greek"
+      | "hebrew"
+      | "latin"
+      | "thai"
+      | "hiragana"
+      | "katakana",
     direction: "ltr" | "rtl",
     alphabet: string,
   ) {
@@ -317,9 +325,9 @@ export class Language implements EnumItem {
       case "hebrew":
         return codePoint >= 0x0590 && codePoint <= 0x05ff;
       case "hiragana":
-        return codePoint >= 0x3040 && codePoint <= 0x309F;
+        return codePoint >= 0x3040 && codePoint <= 0x309f;
       case "katakana":
-        return codePoint >= 0x30A0 && codePoint <= 0x30FF;
+        return codePoint >= 0x30a0 && codePoint <= 0x30ff;
       case "latin":
         // A few Unicode blocks of the Latin script to include only
         // a reasonable list of letter codepoints.
