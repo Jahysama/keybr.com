@@ -80,6 +80,19 @@ export class Language implements EnumItem {
     /* direction= */ "ltr",
     /* alphabet= */ "abcdefghijklmnopqrstuvwxyz",
   );
+  static readonly JP_HIRAGANA = new Language(
+    /* id= */ "jp-hira",
+    /* script= */ "hiragana",
+    /* direction= */ "ltr",
+    /* alphabet= */ "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん",
+  );
+
+  static readonly JP_KATAKANA = new Language(
+    /* id= */ "jp-kata",
+    /* script= */ "katakana",
+    /* direction= */ "ltr",
+    /* alphabet= */ "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン",
+  );
   static readonly LT = new Language(
     /* id= */ "lt",
     /* script= */ "latin",
@@ -167,6 +180,8 @@ export class Language implements EnumItem {
     Language.HR,
     Language.HU,
     Language.IT,
+    Language.JP_HIRAGANA,
+    Language.JP_KATAKANA,
     Language.LT,
     Language.NB,
     Language.NL,
@@ -189,6 +204,8 @@ export class Language implements EnumItem {
     | "cyrillic"
     | "greek"
     | "hebrew"
+    | "hiragana"
+    | "katakana"
     | "latin"
     | "thai";
   /** The direction of the writing system, either "ltr" for left-to-right, or "rtl" for right-to-left. */
@@ -299,6 +316,10 @@ export class Language implements EnumItem {
         return codePoint >= 0x0370 && codePoint <= 0x03ff;
       case "hebrew":
         return codePoint >= 0x0590 && codePoint <= 0x05ff;
+      case "hiragana":
+        return codePoint >= 0x3040 && codePoint <= 0x309F;
+      case "katakana":
+        return codePoint >= 0x30A0 && codePoint <= 0x30FF;
       case "latin":
         // A few Unicode blocks of the Latin script to include only
         // a reasonable list of letter codepoints.
@@ -317,7 +338,6 @@ export class Language implements EnumItem {
         return false;
     }
   }
-
   toString() {
     return this.id;
   }
@@ -337,6 +357,10 @@ export function getExampleText({ script }: Language): string {
       return "Τρώτε περισσότερα μήλα και πορτοκάλια.";
     case "hebrew":
       return "תאכל יותר תפוחים ותפוזים.";
+    case "hiragana":
+      return "もっとりんごとみかんを食べましょう。";
+    case "katakana":
+      return "モットリンゴトミカンヲタベマショウ。";
     case "thai":
       return "กินส้มกับแอปเปิลเยอะ ๆ";
     default:
@@ -354,6 +378,10 @@ export function getExampleLetters({ script }: Language): CodePoint[] {
       return [0x03b1, 0x03b2, 0x03b3, 0x03b4, 0x03b5, 0x03b6];
     case "hebrew":
       return [0x05d0, 0x05d1, 0x05d2, 0x05d3, 0x05d4, 0x05d5];
+    case "hiragana":
+      return [0x3042, 0x3044, 0x3046, 0x3048, 0x304a, 0x304b]; // あいうえおか
+    case "katakana":
+      return [0x30a2, 0x30a4, 0x30a6, 0x30a8, 0x30aa, 0x30ab]; // アイウエオカ
     case "latin":
       return [0x0061, 0x0062, 0x0063, 0x0064, 0x0065, 0x0066];
     case "thai":
